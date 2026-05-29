@@ -16,11 +16,8 @@
       --text: #f1f5f9;
       --muted: #94a3b8;
       --copy: #22d3ee;
-      --copy-bg: rgba(34,211,238,0.08);
-      --copy-border: rgba(34,211,238,0.25);
       --roulette: #f97316;
-      --roulette-bg: rgba(249,115,22,0.08);
-      --roulette-border: rgba(249,115,22,0.25);
+      --casino: #c084fc;
       --radius: 20px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -37,103 +34,30 @@
       padding-top: calc(24px + env(safe-area-inset-top));
       padding-bottom: calc(24px + env(safe-area-inset-bottom));
     }
-
-    .logo {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    .title {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      text-align: center;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 6px;
-      margin-bottom: 48px;
-    }
-
-    .cards {
-      width: 100%;
-      max-width: 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
+    .logo { font-size: 48px; margin-bottom: 10px; }
+    .title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; text-align: center; }
+    .subtitle { font-size: 14px; color: var(--muted); text-align: center; margin-top: 6px; margin-bottom: 40px; }
+    .cards { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 14px; }
     .card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 24px 22px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.15s, box-shadow 0.15s;
-      position: relative;
-      overflow: hidden;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.15s;
+      display: flex; align-items: center; gap: 18px;
+      padding: 22px 20px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--surface);
+      text-decoration: none; color: var(--text);
+      transition: transform 0.15s;
     }
     .card:active { transform: scale(0.97); }
-
-    .card.copy { border-color: var(--copy-border); background: var(--copy-bg); }
-    .card.copy::before { background: rgba(34,211,238,0.05); }
-    .card.copy:active::before { opacity: 1; }
-
-    .card.roulette { border-color: var(--roulette-border); background: var(--roulette-bg); }
-    .card.roulette::before { background: rgba(249,115,22,0.05); }
-    .card.roulette:active::before { opacity: 1; }
-
-    .card-icon {
-      font-size: 44px;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
+    .card.copy   { border-color: rgba(34,211,238,0.25);  background: rgba(34,211,238,0.06); }
+    .card.roulette { border-color: rgba(249,115,22,0.25); background: rgba(249,115,22,0.06); }
+    .card.casino { border-color: rgba(192,132,252,0.25); background: rgba(192,132,252,0.06); }
+    .card-icon { font-size: 40px; line-height: 1; flex-shrink: 0; }
     .card-body { flex: 1; }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .card.copy .card-title { color: var(--copy); }
+    .card-title { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+    .card.copy .card-title     { color: var(--copy); }
     .card.roulette .card-title { color: var(--roulette); }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .card-arrow {
-      font-size: 20px;
-      color: var(--muted);
-      flex-shrink: 0;
-    }
-
-    .footer {
-      margin-top: 48px;
-      font-size: 11px;
-      color: var(--muted);
-      text-align: center;
-      opacity: 0.6;
-    }
-
+    .card.casino .card-title   { color: var(--casino); }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .card-arrow { font-size: 22px; color: var(--muted); flex-shrink: 0; }
+    .footer { margin-top: 40px; font-size: 11px; color: var(--muted); text-align: center; opacity: 0.6; }
     .install-hint {
       position: fixed; bottom: 0; left: 0; right: 0;
       background: rgba(15,23,42,0.97); border-top: 1px solid rgba(255,255,255,0.08);
@@ -149,7 +73,6 @@
   </style>
 </head>
 <body>
-
   <div class="logo">💹</div>
   <div class="title">Mon Tracker</div>
   <div class="subtitle">Suis tes performances en un coup d'œil</div>
@@ -159,7 +82,7 @@
       <div class="card-icon">📈</div>
       <div class="card-body">
         <div class="card-title">Copy Trading</div>
-        <div class="card-desc">Suivi journalier, gains composés, statistiques mensuelles et globales</div>
+        <div class="card-desc">Suivi journalier, intérêts composés, stats mensuelles et globales</div>
       </div>
       <div class="card-arrow">›</div>
     </a>
@@ -167,8 +90,17 @@
     <a class="card roulette" href="roulette-tracker.html">
       <div class="card-icon">🎰</div>
       <div class="card-body">
-        <div class="card-title">Roulette</div>
+        <div class="card-title">Roulette en ligne</div>
         <div class="card-desc">Sessions quotidiennes, bankroll, win rate et résultats mensuels</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card casino" href="roulette-terrestre.html">
+      <div class="card-icon">🎲</div>
+      <div class="card-body">
+        <div class="card-title">Casino Terrestre</div>
+        <div class="card-desc">Capital général, mise par session, gain/perte et impact sur le bankroll</div>
       </div>
       <div class="card-arrow">›</div>
     </a>
@@ -180,7 +112,6 @@
     📱 <span>iPhone :</span> Partager → "Sur l'écran d'accueil" &nbsp;|&nbsp; <span>Android :</span> Menu ⋮ → "Installer l'appli"
     <button class="hint-close" onclick="this.parentElement.style.display='none'">×</button>
   </div>
-
   <script>
     setTimeout(() => { const el = document.getElementById('hint'); if(el) el.style.display='none'; }, 8000);
   </script>
